@@ -1,20 +1,35 @@
+ 
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> v;
+        vector<int> ans;
+        TreeNode* node=root;
         stack<TreeNode*> st;
-        while(1){
-            if(st.empty() && root==NULL) return v;
-            if(root==NULL){
-                TreeNode* t=st.top();
-                v.push_back(t->val);
-                root=t->right;
+        while(true)
+        {
+            if(node==nullptr)
+            {
+                if(st.empty())
+                {
+                    break;
+                }
+                node=st.top();
+                ans.push_back(node->val);
                 st.pop();
-                continue;
+                node=node->right;
             }
-            st.push(root);
-            root=root->left;
+            else
+            {
+                st.push(node);
+                node=node->left;
+            }
         }
-        return v;
+        return ans;
     }
 };
+ 
+Next
+
+// Synced seamlessly with LeetHub Pro
+// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+// Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
